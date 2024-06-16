@@ -5,7 +5,7 @@ export default defineNuxtConfig({
   runtimeConfig: {
     public: {
       directus: {
-        url: "https://directus.hoachnt.com/"
+        url: "https://minhkhang.hoachnt.com/"
       }
     }
   }
