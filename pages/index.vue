@@ -5,7 +5,9 @@
       <button class="btn btn-primary" @click="createTodo()">Создай!</button>
     </div>
     <section>
-      <todoView v-for="todo in todos" :key="todo.id" :title="todo.body" :id="todo.id" :date-_reated="todo.date_created" :user_created="todo.date_created" :fetch_todos="fetchTodos" class="my-3"/>
+      <TransitionGroup name="list" tag="ul">
+        <todoView v-for="todo in todos" :key="todo.id" :title="todo.body" :id="todo.id" :date-_reated="todo.date_created" :user_created="todo.date_created" :fetch_todos="fetchTodos" class="my-3"/>
+      </TransitionGroup>
     </section>
   </div>
 </template>
@@ -55,5 +57,21 @@ onMounted(() => {
 </script>
 
 <style>
+.list-move, /* применять переход к движущимся элементам */
+.list-enter-active,
+.list-leave-active {
+  transition: all 0.5s ease;
+}
 
+.list-enter-from,
+.list-leave-to {
+  opacity: 0;
+  transform: translateX(30px);
+}
+
+/* убедитесь, что удаляющиеся элементы выведены из потока, чтобы 
+анимации перемещения могли быть рассчитаны правильно. */
+.list-leave-active {
+  position: absolute;
+}
 </style>
