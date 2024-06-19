@@ -6,7 +6,7 @@
     </div>
     <section>
       <TransitionGroup name="list" tag="ul">
-        <todoView v-for="todo in todos" :key="todo.id" :title="todo.body" :id="todo.id" :date-_reated="todo.date_created" :user_created="todo.date_created" :fetch_todos="fetchTodos" class="my-3"/>
+        <todoView v-for="todo in todos" :key="todo.id" :title="todo.body" :id="todo.id" :date_created="todo.date_created" :fetch_todos="fetchTodos" class="my-3"/>
       </TransitionGroup>
     </section>
   </div>
@@ -15,7 +15,7 @@
 <script lang="ts" setup>
 const text = ref("")
 
-const { createItems, getItems, deleteItems } = useDirectusItems();
+const { createItems, getItems, } = useDirectusItems();
 let todos = ref<Todo[]>([])
 
 
@@ -34,6 +34,7 @@ const createTodo = async () => {
       }
     ;
     await createItems<Todo>({ collection: "todo", items });
+    text.value = ''
     await fetchTodos()
   } catch (e) {
     console.log(e)
@@ -50,6 +51,7 @@ const fetchTodos = async () => {
     console.log(e)
   }
 };
+
 
 onMounted(() => {
   fetchTodos()
