@@ -30,11 +30,13 @@ interface Todo {
 
 const createTodo = async () => {
   try {
+    if (text.value == "") {
+      return
+    }
     const items: Todo =
     {
       body: text.value,
     }
-      ;
     await createItems<Todo>({ collection: "todo", items });
     text.value = ''
     await fetchTodos()
