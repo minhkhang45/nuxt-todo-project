@@ -54,7 +54,7 @@ const updateTodo = async () => {
         <div class="card-body">
             <h2 class="card-title" v-if="!isUpdate">{{ title }}</h2>
             <section v-if="isUpdate">
-              <input type="text" placeholder="Измените" class="input input-bordered input-accent w-full max-w-xs mr-4" v-model="text"/>
+              <input type="text" placeholder="Измените" class="input input-bordered input-accent w-full max-w-xs mr-4 text-white" v-model="text"/>
               <button class="btn btn-warning w-40 m-1" @click="updateTodo(), isUpdate = false">Изменить</button>
             </section>
             <NuxtTime v-if="date_created != undefined" :datetime="date_created" month="long" day="numeric" hour="numeric" minute="numeric" />
