@@ -1,5 +1,7 @@
 <template>
+  <button class="btn btn-error sticky top-1 left-1" @click="onLogout()">Выйти</button>
   <div class="flex justify-center items-center min-h-screen flex-col">
+    <h1>Добро пожаловать, {{ user?.first_name }}</h1>
     <div class="flex items-center">
       <input type="text" placeholder="Напишите туду" class="input input-bordered input-accent w-full max-w-xs mr-4"
         v-model="text" />
@@ -18,8 +20,15 @@
 const text = ref("")
 
 const { createItems, getItems, } = useDirectusItems();
+const { logout } = useDirectusAuth();
+const user = useDirectusUser();
+const router = useRouter()
 let todos = ref<Todo[]>([])
 
+const onLogout = async () => {
+  await logout();
+  router.push("/login")
+};
 
 interface Todo {
   id?: number;
